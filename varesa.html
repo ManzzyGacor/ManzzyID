@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varesa - Menu Bot WhatsApp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #25D366;
+            --primary-dark: #128C7E;
+            --secondary: #FF5722;
+            --dark: #075E54;
+            --light: #f0f2f5;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://files.catbox.moe/lx6ele.jpg') center/cover no-repeat;
+            opacity: 0.15;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--white);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+        
+        /* Bot Info */
+        .bot-info {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .bot-info h2 {
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .bot-info h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-item i {
+            margin-right: 10px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        /* Pricing Section */
+        .pricing-section {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 40px 20px;
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-section::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: var(--white);
+            transform: skewY(-2deg);
+        }
+        
+        .pricing-section::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: var(--white);
+            transform: skewY(2deg);
+        }
+        
+        .pricing-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .pricing-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--white);
+        }
+        
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .price-card {
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 30px;
+            width: 280px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .price-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .period {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .sewa-button {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--primary-dark);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sewa-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .sewa-button:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+        
+        .sewa-button:hover {
+            background-color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .sewa-button:active {
+            transform: translateY(0);
+        }
+        
+        .whatsapp-icon {
+            margin-right: 8px;
+        }
+        
+        .contact-info {
+            margin-top: 25px;
+            font-size: 0.9rem;
+        }
+        
+        .highlight {
+            background-color: rgba(255, 255, 255, 0.3);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        /* Featured Section */
+        .featured {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+        
+        .featured h2 {
+            color: var(--dark);
+            margin-top: 0;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .featured h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .feature-item {
+            background: rgba(37, 211, 102, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateX(5px);
+            background: rgba(37, 211, 102, 0.1);
+        }
+        
+        .command {
+            font-weight: bold;
+            color: var(--primary);
+            font-family: 'Courier New', monospace;
+        }
+        
+        /* Menu Sections */
+        .menu-section {
+            margin: 30px 20px;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+        
+        .menu-title {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-title i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .menu-list {
+            list-style-type: none;
+            padding-left: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 10px;
+        }
+        
+        .menu-list li {
+            background: var(--white);
+            padding: 12px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .menu-list li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-list li::before {
+            content: '•';
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #666;
+            font-size: 0.9rem;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            margin-top: 40px;
+        }
+        
+        footer p {
+            margin: 5px 0;
+        }
+        
+        .social-links {
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .pricing-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .price-card {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .menu-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <img src="https://files.catbox.moe/lx6ele.jpg" alt="Varesa AI" class="hero-image">
+                <h1>VARESA BOT</h1>
+                <p>WhatsApp Bot dengan berbagai fitur canggih dan AI terbaru</p>
+            </div>
+        </section>
+
+        <!-- Bot Info -->
+        <section class="bot-info">
+            <h2>Informasi Bot</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-robot"></i>
+                    <div>
+                        <strong>Nama Bot:</strong> Varesa
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-user"></i>
+                    <div>
+                        <strong>Pembuat:</strong> Manzzy
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-code"></i>
+                    <div>
+                        <strong>Versi:</strong> 2.0
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-language"></i>
+                    <div>
+                        <strong>Bahasa:</strong> Node.js
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing-section">
+            <h2 class="pricing-title">Sewa Bot Varesa</h2>
+            
+            <div class="pricing-cards">
+                <div class="price-card">
+                    <h3>Paket Bulanan</h3>
+                    <div class="price">Rp 15.000</div>
+                    <div class="period">Per Bulan</div>
+                    <a href="https://wa.me/6282220667139?text=Halo,%20saya%20ingin%20menyewa%20bot%20Varesa%20paket%20bulanan" class="sewa-button">
+                        <i class="fab fa-whatsapp whatsapp-icon"></i> SEWA SEKARANG
+                    </a>
+                </div>
+                
+                <div class="price-card">
+                    <h3>Paket Permanen</h3>
+                    <div class="price">Rp 30.000</div>
+                    <div class="period">Permanen</div>
+                    <a href="https://wa.me/6282220667139?text=Halo,%20saya%20ingin%20menyewa%20bot%20Varesa%20paket%20permanen" class="sewa-button">
+                        <i class="fab fa-whatsapp whatsapp-icon"></i> SEWA SEKARANG
+                    </a>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                Hubungi: <span class="highlight">6282220667139</span> untuk informasi lebih lanjut
+            </div>
+        </section>
+
+        <!-- Featured Section -->
+        <section class="featured">
+            <h2>Fitur Unggulan</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span class="command">.bfstock</span> - Cek stok Blox Fruit
+                </div>
+                <div class="feature-item">
+                    <span class="command">.gardenstock</span> - Cek stok Grow a Garden
+                </div>
+                <div class="feature-item">
+                    <span class="command">.welcome</span> - Pesan selamat datang otomatis
+                </div>
+                <div class="feature-item">
+                    <span class="command">.bye</span> - Pesan perpisahan otomatis
+                </div>
+                <div class="feature-item">
+                    <span class="command">.enable</span> - Fitur perlindungan grup canggih
+                </div>
+                <div class="feature-item">
+                    <span class="command">.ai</span> - Kecerdasan buatan terintegrasi
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Sections -->
+        <section class="menu-section">
+            <div class="menu-title">
+                <i class="fas fa-list"></i> Menu Utama
+            </div>
+            <ul class="menu-list">
+                <li><span class="command">.menu</span> - Menampilkan menu bot</li>
+                <li><span class="command">.help</span> - Bantuan penggunaan bot</li>
+                <li><span class="command">.listmenu</span> - Daftar semua menu</li>
+                <li><span class="command">.profile</span> - Lihat profil pengguna</li>
+                <li><span class="command">.premium</span> - Info fitur premium</li>
+                <li><span class="command">.speed</span> - Cek kecepatan bot</li>
+            </ul>
+        </section>
+
+        <section class="menu-section">
+            <div class="menu-title">
+                <i class="fas fa-gamepad"></i> Fitur Game
+            </div>
+            <ul class="menu-list">
+                <li><span class="command">.bfstock</span> - Cek stok Blox Fruit</li>
+                <li><span class="command">.gagstock</span> - Cek stok Grow a Garden</li>
+                <li><span class="command">.tebakgame</span> - Tebak nama game</li>
+                <li><span class="command">.tebakhero</span> - Tebak nama hero</li>
+                <li><span class="command">.tebaklagu</span> - Tebak judul lagu</li>
+                <li><span class="command">.menu rpg</span> - Game RPG dalam chat</li>
+            </ul>
+        </section>
+
+        <section class="menu-section">
+            <div class="menu-title">
+                <i class="fas fa-users"></i> Fitur Grup
+            </div>
+            <ul class="menu-list">
+                <li><span class="command">.enable</span> - Pengaturan keamanan grup</li>
+                <li><span class="command">.antilink</span> - Blokir link dari grup lain</li>
+                <li><span class="command">.welcome</span> - Set pesan selamat datang</li>
+                <li><span class="command">.bye</span> - Set pesan perpisahan</li>
+                <li><span class="command">.hidetag</span> - Mention semua anggota</li>
+                <li><span class="command">.promote</span> - Naikkan peran anggota</li>
+            </ul>
+        </section>
+
+        <section class="menu-section">
+            <div class="menu-title">
+                <i class="fas fa-download"></i> Fitur Downloader
+            </div>
+            <ul class="menu-list">
+                <li><span class="command">.ytmp3</span> - Download YouTube sebagai MP3</li>
+                <li><span class="command">.ytmp4</span> - Download YouTube sebagai MP4</li>
+                <li><span class="command">.tiktok</span> - Download video TikTok</li>
+                <li><span class="command">.ig</span> - Download konten Instagram</li>
+                <li><span class="command">.fb</span> - Download video Facebook</li>
+                <li><span class="command">.twitter</span> - Download video Twitter</li>
+            </ul>
+        </section>
+
+        <section class="menu-section">
+            <div class="menu-title">
+                <i class="fas fa-crown"></i> Fitur Khusus Owner
+            </div>
+            <ul class="menu-list">
+                <li><span class="command">.broadcast</span> - Kirim pesan ke semua grup</li>
+                <li><span class="command">.setmenu</span> - Ubah tampilan menu</li>
+                <li><span class="command">.restart</span> - Restart bot</li>
+                <li><span class="command">.addprem</span> - Tambah pengguna premium</li>
+                <li><span class="command">.delprem</span> - Hapus pengguna premium</li>
+                <li><span class="command">.backup</span> - Backup data bot</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>Varesa AI - Dibuat dengan ❤️ oleh Manzzy</p>
+            <p>© 2025 Varesa Bot - All rights reserved</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.bot-info, .featured, .menu-section');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if(elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Initialize animations
+        window.addEventListener('load', () => {
+            animateOnScroll();
+        });
+        
+        window.addEventListener('scroll', () => {
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>
