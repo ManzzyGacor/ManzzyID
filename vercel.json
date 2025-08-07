@@ -1,8 +1,16 @@
 {
+  "version": 2,
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/([^.]+)",
+      "destination": "/$1.html"
+    }
+  ],
   "redirects": [
     {
-      "source": "/:path.html",
-      "destination": "/:path",
+      "source": "/:file.html",
+      "destination": "/:file",
       "permanent": true
     }
   ]
