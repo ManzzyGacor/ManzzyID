@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran QRIS - Manzzy Payment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="elemental-loader">
+                <div class="element orbs">
+                    <div class="orb anemo"></div>
+                    <div class="orb geo"></div>
+                    <div class="orb electro"></div>
+                    <div class="orb dendro"></div>
+                    <div class="orb hydro"></div>
+                    <div class="orb pyro"></div>
+                    <div class="orb cryo"></div>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+                <p class="loading-text">Loading elemental energies...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://qu.ax/boXCP.jpg" alt="Genshin Impact" class="logo-img">
+                <h1>Manzzy ID <span>Official</span></h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="index.html#products" class="nav-link"><i class="fas fa-gem"></i> Products</a></li>
+                    <li><a href="index.html#about" class="nav-link"><i class="fas fa-scroll"></i> About</a></li>
+                    <li><a href="index.html#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Payment Section -->
+    <section class="payment-section">
+        <div class="container">
+            <div class="payment-content">
+                <h2 class="section-title">Pembayaran <span>QRIS</span></h2>
+                <p class="payment-subtitle">Scan kode QRIS berikut untuk menyelesaikan pembelian Anda</p>
+                
+              
+                <div class="qris-container">
+                    <div class="qris-card">
+                        <h3><i class="fas fa-qrcode"></i> Scan QRIS</h3>
+                        <div class="qris-image-container">
+                            <img src="https://qu.ax/rQZzF.jpg" alt="QR Code" class="qris-image">
+                            <div class="qris-overlay">
+                                <i class="fas fa-search-plus"></i>
+                                <p>Klik untuk memperbesar</p>
+                            </div>
+                        </div>
+                        <p class="qris-instruction">Gunakan aplikasi mobile banking atau e-wallet Anda untuk scan QRIS di atas</p>
+                    </div>
+                    
+                    <div class="payment-steps">
+                        <h3><i class="fas fa-list-ol"></i> Langkah Pembayaran</h3>
+                        <ol>
+                            <li>Buka aplikasi mobile banking atau e-wallet Anda</li>
+                            <li>Pilih fitur scan QRIS</li>
+                            <li>Arahkan kamera ke kode QR di atas</li>
+                            <li>Konfirmasi jumlah pembayaran</li>
+                            <li>Selesaikan transaksi</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="payment-notes">
+                    <h3><i class="fas fa-info-circle"></i> Informasi Penting</h3>
+                    <ul>
+                        <li>Pembayaran akan diproses secara otomatis setelah Anda melakukan transfer</li>
+                        <li>Simpan bukti pembayaran Anda</li>
+                        <li>Produk akan dikirim setelah pembayaran terverifikasi</li>
+                        <li>Untuk pertanyaan, hubungi WhatsApp: <a href="https://wa.me/62895605053911" class="whatsapp-link">+62 895-6050-53911</a></li>
+                    </ul>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="index.html" class="btn cancel-btn"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+                    <button class="btn confirm-btn" id="confirm-payment"><i class="fas fa-check"></i> Saya Sudah Bayar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QRIS Modal -->
+    <div id="qris-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>QRIS Pembayaran</h2>
+            <img src="https://qu.ax/rQZzF.jpg" alt="QR Code" class="modal-qris-image">
+            <p class="modal-instruction">Scan QRIS ini dengan aplikasi mobile banking atau e-wallet Anda</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Manzzy <span>Treasures</span></h3>
+                    <p>Your premier Store for WhatsApp merchandise</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            <p class="footer-disclaimer">&copy; 2025 Manzzy ID Official.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Script khusus untuk halaman pembayaran
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inisialisasi komponen
+            initLoadingScreen();
+            initQRISModal();
+            initPaymentConfirmation();
+            
+            // Ambil parameter dari URL (jika ada)
+            const urlParams = new URLSearchParams(window.location.search);
+            const productName = urlParams.get('product');
+            const productPrice = urlParams.get('price');
+            
+            // Isi data produk jika parameter tersedia
+            if (productName) {
+                document.getElementById('payment-product-name').textContent = decodeURIComponent(productName);
+            }
+            
+            if (productPrice) {
+                document.getElementById('payment-product-price').textContent = formatPrice(productPrice);
+            }
+        });
+
+        // Fungsi untuk mengatur loading screen
+        function initLoadingScreen() {
+            const loadingScreen = document.getElementById('loading-screen');
+            
+            // Simulasi loading
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }, 2000);
+        }
+
+        // Fungsi untuk modal QRIS
+        function initQRISModal() {
+            const modal = document.getElementById('qris-modal');
+            const qrisImage = document.querySelector('.qris-image-container');
+            const closeModal = document.querySelector('.close-modal');
+            
+            // Buka modal saat gambar QRIS diklik
+            if (qrisImage) {
+                qrisImage.addEventListener('click', function() {
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+            
+            // Tutup modal
+            if (closeModal) {
+                closeModal.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            }
+            
+            // Tutup modal saat klik di luar konten
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Fungsi untuk konfirmasi pembayaran
+        function initPaymentConfirmation() {
+            const confirmBtn = document.getElementById('confirm-payment');
+            
+            if (confirmBtn) {
+                confirmBtn.addEventListener('click', function() {
+                    // Tampilkan notifikasi
+                    showNotification('Terima kasih! Konfirmasi pembayaran Anda telah dikirim. Kami akan memverifikasi dalam 1x24 jam.', 'success');
+                    
+                    // Nonaktifkan tombol setelah diklik
+                    confirmBtn.disabled = true;
+                    confirmBtn.innerHTML = '<i class="fas fa-check"></i> Pembayaran Dikonfirmasi';
+                    confirmBtn.style.opacity = '0.7';
+                });
+            }
+        }
+
+        // Fungsi untuk format harga
+        function formatPrice(price) {
+            return 'Rp ' + parseInt(price).toLocaleString('id-ID');
+        }
+
+        // Fungsi untuk menampilkan notifikasi
+        function showNotification(message, type = 'success') {
+            // Buat elemen notifikasi
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                    <p>${message}</p>
+                </div>
+            `;
+            
+            // Tambahkan styles
+            notification.style.position = 'fixed';
+            notification.style.bottom = '20px';
+            notification.style.right = '20px';
+            notification.style.background = type === 'success' 
+                ? 'linear-gradient(135deg, var(--anemo), var(--electro))' 
+                : 'linear-gradient(135deg, var(--pyro), #e53935)';
+            notification.style.color = 'white';
+            notification.style.padding = '15px 20px';
+            notification.style.borderRadius = '8px';
+            notification.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.3)';
+            notification.style.zIndex = '1002';
+            notification.style.display = 'flex';
+            notification.style.alignItems = 'center';
+            notification.style.gap = '10px';
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateY(20px)';
+            notification.style.transition = 'opacity 0.3s, transform 0.3s';
+            
+            document.body.appendChild(notification);
+            
+            // Tampilkan notifikasi
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateY(0)';
+            }, 100);
+            
+            // Sembunyikan notifikasi setelah 5 detik
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

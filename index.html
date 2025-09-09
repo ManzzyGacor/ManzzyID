@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manzzy ID Official - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="elemental-loader">
+                <div class="element orbs">
+                    <div class="orb anemo"></div>
+                    <div class="orb geo"></div>
+                    <div class="orb electro"></div>
+                    <div class="orb dendro"></div>
+                    <div class="orb hydro"></div>
+                    <div class="orb pyro"></div>
+                    <div class="orb cryo"></div>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+                <p class="loading-text">Loading elemental energies...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://qu.ax/boXCP.jpg" alt="Genshin Impact" class="logo-img">
+                <h1>Manzzy ID <span>Official</span></h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#home" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#products" class="nav-link"><i class="fas fa-gem"></i> Products</a></li>
+                      <li><a href="#about" class="nav-link"><i class="fas fa-scroll"></i> About</a></li>
+                       <li><a href="payment.html" class="nav-link"><i class="fas fa-scroll"></i> Payment</a></li>
+                    <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2 class="hero-title">Welcome to Dashboard Manzzy ID</h2>
+            <p class="hero-subtitle">Discover exclusive WhatsApp merchandise and equipment </p>
+            <a href="#products" class="btn elemental-btn"><i class="fas fa-compass"></i> Explore Products</a>
+        </div>
+        <div class="hero-elements">
+            <div class="floating-element anemo"></div>
+            <div class="floating-element geo"></div>
+            <div class="floating-element electro"></div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title">List <span>Product</span></h2>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://qu.ax/rJoqO.jpg" alt="Varesa">
+                        <div class="product-element anemo-bg"></div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Permanent Varesa AI</h3>
+                        <p>High Quality AI For Group WhatsApp</p>
+                        <div class="product-price">Rp 30.000</div>
+                        <button class="buy-btn elemental-btn anemo-btn" data-product="Permanen Varesa AI" data-price="30000"><i class="fas fa-wind"></i> Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://qu.ax/rJoqO.jpg" alt="Artifact Product">
+                        <div class="product-element geo-bg"></div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Monthly Varesa AI</h3>
+                        <p>High Quality AI For Group WhatsApp</p>
+                        <div class="product-price">Rp 15.000</div>
+                        <button class="buy-btn elemental-btn geo-btn" data-product="Bulanan Varesa AI" data-price="15000"><i class="fas fa-mountain"></i> Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://qu.ax/HtgiT.jpg" alt="Weapon Product">
+                        <div class="product-element electro-bg"></div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Panel Unlimited Private </h3>
+                        <p>Panel Unlimited Aktif Satu Bulan&Garansi 1bulan</p>
+                        <div class="product-price">Rp 6.000</div>
+                        <button class="buy-btn elemental-btn electro-btn" data-product="Panel Private Unlimited" data-price=6000"><i class="fas fa-bolt"></i> Beli Sekarang</button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://qu.ax/ObecX.jpg" alt="Varesa">
+                        <div class="product-element dendro-bg"></div>
+                    </div>
+                    <div class="product-info">
+                        <h3>PT Special</h3>
+                        <p>Benefit PT Special Di jelaskan Melalui WhatsApp</p>
+                        <div class="product-price">Rp 100.000</div>
+                        <button class="buy-btn elemental-btn dendro-btn" data-product="PT special" data-price="100000"><i class="fas fa-leaf"></i> Beli Sekarang</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popup Pembelian -->
+    <div id="purchase-popup" class="purchase-popup">
+        <div class="popup-content">
+            <span class="close-popup">&times;</span>
+            <h2><i class="fas fa-shopping-cart"></i> Konfirmasi Pembelian</h2>
+            
+            <div class="purchase-details">
+                <div class="detail-item">
+                    <span class="detail-label">Produk:</span>
+                    <span id="popup-product-name" class="detail-value product-name"></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Harga:</span>
+                    <span id="popup-product-price" class="detail-value product-price"></span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Metode Pembayaran:</span>
+                    <span class="detail-value">QRIS</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Estimasi Pengiriman:</span>
+                    <span class="detail-value">1-3 jam kerja</span>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="cancel-btn">Batal</button>
+                <button id="confirm-purchase" class="confirm-btn">Lanjutkan ke WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Popup -->
+    <div id="loading-popup" class="loading-popup">
+        <div class="loading-popup-content">
+            <div class="elemental-loading">
+                <div class="element orbs">
+                    <div class="orb anemo"></div>
+                    <div class="orb geo"></div>
+                    <div class="orb electro"></div>
+                    <div class="orb dendro"></div>
+                    <div class="orb hydro"></div>
+                    <div class="orb pyro"></div>
+                    <div class="orb cryo"></div>
+                </div>
+            </div>
+            <p>Mempersiapkan pesanan Anda...</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Manzzy <span>Treasures</span></h3>
+                    <p>Your premier store for WhatsApp merchandise</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            <p class="footer-disclaimer">&copy; 2025 Manzzy ID Official.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
